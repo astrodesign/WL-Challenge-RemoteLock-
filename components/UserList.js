@@ -64,7 +64,7 @@ elevation: 5,
 function Item({ user }) {
   const status = useMemo(() => {
     const format = "YYYY-MM-DDTHH:mm:ss";
-    let status = "expired";
+    let status = "User Access";
     if (!!user.attributes.starts_at && !!user.attributes.ends_at)
       status = moment().isBetween(
         moment(user.attributes.starts_at, format),
@@ -93,13 +93,13 @@ function Item({ user }) {
                     ? "green"
                     : status === "expired"
                     ? "red"
-                    : "yellow",
+                    : "orange",
                 backgroundColor:
                   status === "active"
                     ? "#0f03"
                     : status === "expired"
                     ? "#f003"
-                    : "#ff03",
+                    : "#orange",
               },
             ]}
           >
