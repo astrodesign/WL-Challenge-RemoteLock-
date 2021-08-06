@@ -5,7 +5,7 @@ import Tabs from "./components/Tabs";
 import DeviceList from "./components/DeviceList";
 import UserList from "./components/UserList";
 import { useFetchData } from "./hooks/useFetchData";
-import { FETCH_USERS_URL, FETCH_DEVICES_URL } from "./Constants";
+import { FETCH_USERS_URL, FETCH_DEVICES_URL, FETCH_Z_DEVICES_URL } from "./Constants";
 
 export default function TabViewExample() {
   const {
@@ -13,23 +13,25 @@ export default function TabViewExample() {
     data: dataUsers,
     fetchData: fetchUsers,
   } = useFetchData(FETCH_USERS_URL);
+  
   const {
     loading: loadingDevices,
     data: dataDevices,
     fetchData: fetchDevices,
-  } = useFetchData(FETCH_DEVICES_URL);
+  } = useFetchData(FETCH_Z_DEVICES_URL);
 
   React.useEffect(() => {
     fetchDevices();
     fetchUsers();
   }, [fetchDevices, fetchUsers]);
 
+
   return (
     <View style={{ backgroundColor: "#fafafa", flex: 1 }}>
       <StatusBar />
       <SafeAreaView style={{ flex: 1 }}>
         <Tabs
-          tabs={["Devices", "Users"]}
+          tabs={["Devices", "Users",]}
           content={[
             <DeviceList devices={dataDevices} />,
             <UserList users={dataUsers} />,

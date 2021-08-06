@@ -55,10 +55,19 @@ const styles = StyleSheet.create({
     textAlign: "right",
     flex: 1,
   },
+  temperature:{
+    color: "#000",
+    fontSize: 20,
+  }, 
+  iconContainer:{
+    marginHorizontal: 20
+  }
 });
 
-function Item({ device }) {
+function Lock({ device }) {
   const [state, setState] = useState(device.attributes.state);
+
+
   return (
     <View style={styles.itemContainer}>
       <View style={styles.icon}></View>
@@ -98,6 +107,47 @@ function Item({ device }) {
     </View>
   );
 }
+
+function Thermostat({ device }) {
+  const [state, setState] = useState(device.attributes.state);
+
+
+  return (
+    <View style={styles.itemContainer}>
+      <View style={styles.icon}></View>
+      <View style={styles.contentContainer}>
+        <Text style={styles.title}>{device.attributes.name}</Text>
+        <Text style={styles.subTitle}>{device.attributes.model_number}</Text>
+        <View style={styles.stateContainer}>
+          <View>
+            <Text style={styles.temperature}>{device.attributes.temperature} °F</Text>
+            <Text style={styles.subTitle}>CURRENT</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <Ionicons name='arrow-forward-outline' size={20}/>
+          </View>
+            
+          <View>
+            <Text style={styles.temperature}>{device.attributes.target_temperature} °F</Text>
+            <Text style={styles.subTitle}>TARGET</Text>
+          </View>
+          </View>
+      </View>
+    </View>
+  );
+}
+
+const Item = ({device}) =>{
+  if (device.type === 'lock'){
+    return(
+      <Lock device={device}/>
+    )
+  } else {
+    return(
+      <Thermostat device={device}/>
+    )
+  }
+}; 
 
 export default function DeviceList({ devices = [] }) {
   return (

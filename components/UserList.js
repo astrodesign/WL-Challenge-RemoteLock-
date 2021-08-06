@@ -77,6 +77,7 @@ function Item({ user }) {
         : "expired";
     return status;
   }, [user.attributes.starts_at, user.attributes.ends_at]);
+  
   return (
     <View style={styles.itemContainer}>
       <View style={styles.icon}></View>
