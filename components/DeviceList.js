@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   temperature:{
     color: "#000",
     fontSize: 20,
+    fontWeight: "bold", 
   }, 
   iconContainer:{
     marginHorizontal: 20

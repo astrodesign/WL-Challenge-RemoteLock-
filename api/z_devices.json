@@ -1,7 +1,7 @@
 {
     "data":[
        {
-          "id":"457dd414-9661-4aad-8cf4-3fbd1aea2653",
+          "id":"457dd414-9661-4aad-8cf4-3fbd1aea2652",
           "attributes":{
              "model_number":"BG (LS-3i)",
              "state":"locked",
@@ -10,7 +10,7 @@
              "firmware_version":"5.01.181217.1",
              "connected_at":"2019-04-10T08:02:36Z",
              "power_source":"alkaline_battery",
-             "name":"Home"
+             "name":"Home: Backdoor"
           },
           "type":"lock"
        },
@@ -24,7 +24,7 @@
              "firmware_version":"5.01.181217.1",
              "connected_at":"2019-05-18T17:00:51Z",
              "power_source":"lithium_battery",
-             "name":"Office"
+             "name":"Office: Main Door"
           },
           "type":"lock"
        },
@@ -41,6 +41,48 @@
              "unit":"F"
           },
           "type":"thermostat"
-       }
+       }, 
+       {
+        "id":"c481ffbf-e2c2-46bc-ab59-661b85096694",
+        "attributes":{
+           "name":"Office Thermostat",
+           "model_number":"LS-60i",
+           "power_source":"hardwire",
+           "firmware_version":"3.03.170717.3",
+           "serial_number":"001DC9A0SSOM",
+           "temperature":55,
+           "target_temperature":73,
+           "unit":"F"
+        },
+        "type":"thermostat"
+     }, 
+     {
+        "id":"457dd414-9661-4aad-8cf4-3fbd1aea2653",
+        "attributes":{
+           "model_number":"BG (LS-3i)",
+           "state":"locked",
+           "programming_code":"2806",
+           "serial_number":"AC000W001635336",
+           "firmware_version":"5.01.181217.1",
+           "connected_at":"2019-04-10T08:02:36Z",
+           "power_source":"alkaline_battery",
+           "name":"Store: Inventory Room"
+        },
+        "type":"lock"
+     }, 
+     {
+        "id":"c481ffbf-e2c2-46bc-ab59-661b85096692",
+        "attributes":{
+           "name":"Store Thermostat",
+           "model_number":"LS-60i",
+           "power_source":"hardwire",
+           "firmware_version":"3.03.170717.3",
+           "serial_number":"001DC9A0SSOM",
+           "temperature":70,
+           "target_temperature":73,
+           "unit":"F"
+        },
+        "type":"thermostat"
+     }
     ]
  }

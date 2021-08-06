@@ -60,8 +60,10 @@ elevation: 5,
     textTransform: "uppercase",
   },
 });
+ 
 
 function Item({ user }) {
+  
   const status = useMemo(() => {
     const format = "YYYY-MM-DDTHH:mm:ss";
     let status = "User Access";
@@ -77,7 +79,7 @@ function Item({ user }) {
         : "expired";
     return status;
   }, [user.attributes.starts_at, user.attributes.ends_at]);
-  
+
   return (
     <View style={styles.itemContainer}>
       <View style={styles.icon}></View>

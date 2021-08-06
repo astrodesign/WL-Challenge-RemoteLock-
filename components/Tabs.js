@@ -14,10 +14,19 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     flexDirection: "row",
     flex: 1,
+    
   },
   activeTab: {
     backgroundColor: "#fff",
     elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+	    width: 0,
+	    height: 1,
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+  elevation: 3,
   },
   tabContainer: {
     flex: 1,
