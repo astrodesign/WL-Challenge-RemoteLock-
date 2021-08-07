@@ -111,7 +111,7 @@ function Lock({ device }) {
 }
 
 function Thermostat({ device }) {
-  const [target, setTarget] = useState(device.attributes.target_temperature);
+  const [target, setTarget] = useState(`${device.attributes.target_temperature}`);
   const updateTarget = () => setTarget(() => target); 
 
   return (
@@ -130,13 +130,16 @@ function Thermostat({ device }) {
           </View>
             
           <View>
+            <View style={styles.stateContainer}>
             <TextInput 
                
               style={styles.temperature}
-              defaultValue={`${device.attributes.target_temperature} °F`}
-              onChangeText={updateTarget}
+              defaultValue={target}
+              onChangeText={()=> updateTarget}
               keyboardType='numeric'
               />
+              <Text style={styles.temperature}>°F</Text>
+            </View>
 
             <Text style={styles.subTitle}>TARGET</Text>
           </View>
