@@ -3,10 +3,11 @@ import { Switch } from "react-native";
 import { FlatList, StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { TextInput } from "react-native";
 
 const styles = StyleSheet.create({
   itemContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     elevation: 4,
     padding: 16,
     marginTop: 8,
@@ -110,8 +111,8 @@ function Lock({ device }) {
 }
 
 function Thermostat({ device }) {
-  const [state, setState] = useState(device.attributes.state);
-
+  const [target, setTarget] = useState(device.attributes.target_temperature);
+  const updateTarget = () => setTarget(() => target); 
 
   return (
     <View style={styles.itemContainer}>
@@ -129,7 +130,14 @@ function Thermostat({ device }) {
           </View>
             
           <View>
-            <Text style={styles.temperature}>{device.attributes.target_temperature} °F</Text>
+            <TextInput 
+               
+              style={styles.temperature}
+              defaultValue={`${device.attributes.target_temperature} °F`}
+              onChangeText={updateTarget}
+              keyboardType='numeric'
+              />
+
             <Text style={styles.subTitle}>TARGET</Text>
           </View>
           </View>

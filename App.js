@@ -27,7 +27,7 @@ export default function TabViewExample() {
 
 
   return (
-    <View style={{ backgroundColor: "#fafafa", flex: 1 }}>
+    <View style={{ backgroundColor: "white", flex: 1 }}>
       <StatusBar />
       <SafeAreaView style={{ flex: 1 }}>
         <Tabs
