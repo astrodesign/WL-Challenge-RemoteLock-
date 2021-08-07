@@ -68,13 +68,20 @@ const styles = StyleSheet.create({
 
 function Lock({ device }) {
   const [state, setState] = useState(device.attributes.state);
-
+  const [name, setName] = useState(device.attributes.name); 
+  const updateName = () => setName(() => name); 
 
   return (
     <View style={styles.itemContainer}>
       <View style={styles.icon}></View>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>{device.attributes.name}</Text>
+      <TextInput 
+               
+               style={styles.title}
+               defaultValue={name}
+               onChangeText={()=> updateName}
+               keyboardType='default'
+               />
         <Text style={styles.subTitle}>{device.attributes.model_number}</Text>
         <View style={styles.stateContainer}>
           <Switch
@@ -112,13 +119,22 @@ function Lock({ device }) {
 
 function Thermostat({ device }) {
   const [target, setTarget] = useState(`${device.attributes.target_temperature}`);
+  const [name, setName] = useState(`${device.attributes.name}`); 
+  const updateName = () => setName(() => name); 
   const updateTarget = () => setTarget(() => target); 
+
 
   return (
     <View style={styles.itemContainer}>
       <View style={styles.icon}></View>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>{device.attributes.name}</Text>
+      <TextInput 
+               
+               style={styles.title}
+               defaultValue={name}
+               onChangeText={()=> updateName}
+               keyboardType='default'
+               />
         <Text style={styles.subTitle}>{device.attributes.model_number}</Text>
         <View style={styles.stateContainer}>
           <View>
