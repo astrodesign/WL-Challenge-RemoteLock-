@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useMemo, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableHighlight, Alert } from "react-native";
 import { FlatList } from "react-native";
 import { View, Text } from "react-native";
 
@@ -63,7 +63,6 @@ elevation: 5,
  
 
 function Item({ user }) {
-  
   const status = useMemo(() => {
     const format = "YYYY-MM-DDTHH:mm:ss";
     let status = "User Access";
@@ -115,11 +114,39 @@ function Item({ user }) {
 }
 
 export default function UserList({ users = [] }) {
+    const [showBox, setShowBox] = useState(true);
+  
+    const showConfirmDialog = () => {
+      return Alert.alert(
+        "Are your sure?",
+        "Are you sure you want to remove this User?",
+        [
+          // The "Yes" button
+          {
+            text: "Yes",
+            onPress: () => {
+              setShowBox(false);
+            },
+          },
+          // The "No" button
+          // Does nothing but dismiss the dialog when tapped for now, needs to have a functionality to remove a user from API. 
+          {
+            text: "No",
+          },
+        ]
+      );
+    };
+
   return (
     <View>
       <FlatList
         data={users}
-        renderItem={({ item, index }) => <Item user={item} />}
+        renderItem={({ item, index }) => <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onLongPress={() => showConfirmDialog()}>
+          <Item user={item} />
+        </TouchableHighlight>}
         keyExtractor={(item) => item.id}
       />
     </View>
