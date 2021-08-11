@@ -4,6 +4,8 @@ import { FlatList, StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { TextInput } from "react-native";
+import { TouchableHighlight } from "react-native"; 
+import { Alert } from "react-native";
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -118,11 +120,10 @@ function Lock({ device }) {
 }
 
 function Thermostat({ device }) {
-  const [target, setTarget] = useState(`${device.attributes.target_temperature}`);
+  const [target, setTarget] = useState(Number(device.attributes.target_temperature));
   const [name, setName] = useState(`${device.attributes.name}`); 
   const updateName = () => setName(() => name); 
-  const updateTarget = () => setTarget(() => target); 
-
+  const updateTarget = () => setTarget(() => Number(target)); 
 
   return (
     <View style={styles.itemContainer}>
@@ -151,8 +152,10 @@ function Thermostat({ device }) {
                
               style={styles.temperature}
               defaultValue={target}
+              numbericw
               onChangeText={()=> updateTarget}
-              keyboardType='numeric'
+              keyboardType='number-pad'
+              maxLength={2}
               />
               <Text style={styles.temperature}>°F</Text>
             </View>
@@ -177,14 +180,45 @@ const Item = ({device}) =>{
   }
 }; 
 
+
 export default function DeviceList({ devices = [] }) {
+  const [showBox, setShowBox] = useState(true);
+
+  const showConfirmDialog = () => {
+    return Alert.alert(
+      "Are your sure?",
+      "Are you sure you want to remove this device?",
+      [
+        // The "Yes" button
+        {
+          text: "Yes",
+          onPress: () => {
+            setShowBox(false);
+          },
+        },
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped for now, needs to have a functionality to remove a device from API. 
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
+
   return (
     <View>
       <FlatList
         data={devices}
-        renderItem={({ item, index }) => <Item device={item} />}
+        renderItem={({ item, index }) => 
+        <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onLongPress={() => showConfirmDialog()}>
+          <Item device={item} />
+        </TouchableHighlight>
+        }
         keyExtractor={(item) => item.id}
       />
     </View>
   );
-}
+}; 
